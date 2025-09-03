@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fake News Detector</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; background: #f7f7f7;}
+    .card { max-width: 800px; margin: 0 auto; background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    textarea { width: 100%; height: 160px; padding: 12px; }
+    button { padding: 12px 18px; border: none; background: #4a90e2; color: #fff; border-radius: 8px; cursor: pointer; }
+    .result { margin-top: 16px; padding: 12px; border-radius: 8px; }
+    .fake { background: #ffe5e5; color: #b00020; }
+    .real { background: #e6ffe6; color: #1b5e20; }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>📰 Fake News Detection</h1>
+    <form method="POST">
+      <label for="news">Enter headline or article:</label><br/>
+      <textarea id="news" name="news" placeholder="Paste text here...">{{ text or '' }}</textarea><br/><br/>
+      <button type="submit">Predict</button>
+    </form>
+
+    {% if prediction %}
+      <div class="result {{ 'fake' if prediction == 'FAKE' else 'real' }}">
+        <strong>Prediction:</strong> {{ prediction }}<br/>
+        {% if confidence %}
+          <strong>Confidence:</strong> {{ '{:.2%}'.format(confidence) }}
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>
