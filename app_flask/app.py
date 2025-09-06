@@ -30,4 +30,3 @@ def index():
 if __name__ == "__main__":
     app.run(debug=True)
 
-#Set-Location "d:\programs\Python\fake-news-webapp\app_flask"; python app.pyS
